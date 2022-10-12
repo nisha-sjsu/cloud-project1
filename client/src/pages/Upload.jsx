@@ -7,7 +7,7 @@ import { Navbar, NavbarBrand } from "reactstrap";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ImageContainer = () => {
+const ImageContainer = (props) => {
   const [fileSrc, setFileSrc] = useState();
   const [isUploading, setIsUploading] = useState();
   const [uploaded, setUploaded] = useState();
@@ -63,7 +63,10 @@ const ImageContainer = () => {
         </NavbarBrand>
         <a
           href="/"
-          onClick={() => localStorage.clear()}
+          onClick={() => {
+            localStorage.clear();
+            props.logOut();
+          }}
           style={{ color: "white" }}
         >
           <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" />

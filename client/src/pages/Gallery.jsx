@@ -1,13 +1,23 @@
 import { Table, Button, Label, Input } from "reactstrap";
-import { Modal, ModalBody, ModalHeader, FormGroup, Navbar, NavbarBrand } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  FormGroup,
+  Navbar,
+  NavbarBrand,
+} from "reactstrap";
 import axios from "axios";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileArrowDown, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileArrowDown,
+  faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function Gallery() {
+export default function Gallery(props) {
   const [filesData, setFilesData] = useState();
   const [open, setOpen] = useState(false);
   const [fileData, setFileData] = useState();
@@ -60,9 +70,9 @@ export default function Gallery() {
   const deleteFile = async (file) => {
     setFileData(file);
     let response = await axios.delete(
-      "/deleteFile?key=" + file.key + "&&email=" + fileData.email
+      "/deleteFile?key=" + file.key + "&&email=" + file.email
     );
-    if(file.data.Status==200){
+    if (response.data.Status == 200) {
       axios.get("/getFiles?email=" + email).then(function (response) {
         setFilesData(response.data);
       });
@@ -108,10 +118,18 @@ export default function Gallery() {
   return (
     <div>
       <Navbar color="dark" light expand="md">
-          <NavbarBrand  style={{color:"white", cursor:"pointer"}} href="/upload">Upload</NavbarBrand>
-          <a
+        <NavbarBrand
+          style={{ color: "white", cursor: "pointer" }}
+          href="/upload"
+        >
+          Upload
+        </NavbarBrand>
+        <a
           href="/"
-          onClick={() => localStorage.clear()}
+          onClick={() => {
+            localStorage.clear();
+            props.logOut();
+          }}
           style={{ color: "white" }}
         >
           <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" />

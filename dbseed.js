@@ -28,6 +28,12 @@ con.connect(function (err) {
     //         console.log(result);
     //     });
 
+    /* CREATE auth TABLE */
+    // con.query('create table if not exists auth(id int NOT NULL AUTO_INCREMENT,  email varchar(100), filename varchar(50), password varchar(200), PRIMARY KEY(id));',
+    //     function (error, result, fields) {
+    //         console.log(result);
+    //     })
+
     /* DESC TABLE */
     // con.query('desc users;',(error, result, fields)=>{
     //     console.log(result);
@@ -39,11 +45,11 @@ con.connect(function (err) {
     // });
 
     /* SELECT users */
-    // con.query('select * from users;', (error, result, fields) => {
-    //     result.forEach(res => {
-    //         console.log(res);
-    //     });
-    // });
+    con.query('select * from auth;', (error, result, fields) => {
+        result.forEach(res => {
+            console.log(res);
+        });
+    });
 
     /*Select files of specific user*/
     // let email = 'srinishaa@gmail.com'
@@ -54,7 +60,7 @@ con.connect(function (err) {
     // });
 
     /* TRUNCATE TABLE */
-    // con.query('truncate table users;', (error, result, fields) => {
+    // con.query('truncate table auth;', (error, result, fields) => {
     //     console.log(result);
     // });
     // con.end();

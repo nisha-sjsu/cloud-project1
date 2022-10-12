@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Upload from "./pages/Upload"
 import { useEffect, useState } from "react";
 import Gallery from './pages/Gallery';
+import Register from "./pages/Register";
 
 function App() {
 
@@ -24,8 +25,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path='/' element={<Login logIn={logIn} />} />
-          <Route exact path='/upload' element={userLogged ? <Upload /> : <Login logIn={logIn} />} />
-          <Route exact path='/gallery' element={userLogged ? <Gallery /> : <Login logIn={logIn} />} />
+          <Route exact path='/register' element={<Register logIn={logIn} />} />
+          <Route exact path='/upload' element={userLogged ? <Upload /> : <Login logIn={logIn} logOut={logOut} />} />
+          <Route exact path='/gallery' element={userLogged ? <Gallery /> : <Login logIn={logIn} logOut={logOut} />} />
         </Routes>
       </Router>
     </>

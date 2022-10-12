@@ -157,6 +157,30 @@ app.post("/postFile", upload.single('file'), async (req, res) => {
     );
 });
 
+app.post("/register", async(req, res)=>{
+    let user = req.body;
+    con.connect(function (err) {
+    con.query(`INSERT INTO main.auth (email, password) VALUES ('${user.email}', '${user.password}')`,
+        function (err, result, fields) {
+            if (err) console.log(err);
+            if (fields) console.log(fields);
+            if (result) console.log({ email: user.email });
+        });
+    })
+    res.sendStatus(200);
+})
+
+app.post("/login", async(req, res)=>{
+    let user = req.body;
+    con.connect(function (err) {
+    con.query(`select * from auth where email='${user.email}' and password='${user.password}'`,
+        function (err, result, fields) {
+            if (err) console.log(err);
+            if (result) res.send(result);
+        });
+    })
+})
+
 app.listen(process.env.PORT || 4000, function () {
     console.log("Server started on port 4000");
 });
