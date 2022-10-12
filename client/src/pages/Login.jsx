@@ -14,21 +14,21 @@ export default function Login(props) {
 
   const [wrongPass, setWrongPass] = useState(false);
 
-  useEffect(() => {
-    /* global google */
-    setTimeout(() => {
-      if (window.google) {
-        google.accounts.id.initialize({
-          client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-          callback: handleLogin,
-        });
+  // useEffect(() => {
+  //   /* global google */
+  //   setTimeout(() => {
+  //     if (window.google) {
+  //       google.accounts.id.initialize({
+  //         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+  //         callback: handleLogin,
+  //       });
   
-        google.accounts.id.renderButton(document.getElementById("loginBtn"), {
-          theme: "outline",
-        });
-      }
-    }, 500);
-  }, []);
+  //       google.accounts.id.renderButton(document.getElementById("loginBtn"), {
+  //         theme: "outline",
+  //       });
+  //     }
+  //   }, 500);
+  // }, []);
   let navigate = useNavigate();
 
   function handleLogin(response) {
