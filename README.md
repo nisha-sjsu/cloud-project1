@@ -77,6 +77,7 @@ Admin panel opens for user srinishaa@gmail.com. The admin is given the privilege
 
 
 UI, Documentation, Video, AWS Resource Config
+
 Website - https://cmpe282-nisha-project1.tk/
 
 CodeCommit repo link - https://git-codecommit.us-east-1.amazonaws.com/v1/repos/project1-cmpe281
